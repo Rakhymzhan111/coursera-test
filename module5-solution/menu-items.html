@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu Items - David Chu's China Bistro</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            font-size: 16px;
+            color: #fff;
+            background-color: #61122f;
+            font-family: 'Oxygen', sans-serif;
+        }
+        #header-nav {
+            background-color: #f6b319;
+            border-radius: 0;
+            border: 0;
+        }
+        .navbar-brand h1 {
+            font-family: 'Lora', serif;
+            color: #557c3e;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: .75;
+        }
+        .container {
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .menu-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .menu-item h3 {
+            margin-top: 0;
+            color: #61122f;
+        }
+        .back-btn {
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #222;
+            color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="header-nav" class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="navbar-brand">
+                        <a href="index.html"><h1>David Chu's China Bistro</h1></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="btn btn-primary back-btn">← Back to Home</a>
+        <h1 id="category-title" class="text-center">Loading...</h1>
+        <div id="menu-items-list"></div>
+    </div>
+
+    <footer>
+        &copy; Copyright David Chu's China Bistro 2016
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // Получаем категорию из URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var categoryShortName = urlParams.get('category');
+        
+        if (categoryShortName) {
+            // Загружаем название категории
+            $.getJSON("https://coursera-jhu-default-rtdb.firebaseio.com/categories.json", function(categories) {
+                var category = categories.find(function(cat) {
+                    return cat.short_name === categoryShortName;
+                });
+                if (category) {
+                    $("#category-title").text(category.name);
+                } else {
+                    $("#category-title").text("Category: " + categoryShortName);
+                }
+            });
+            
+            // Загружаем блюда категории
+            var menuUrl = "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/" + categoryShortName + ".json";
+            $.getJSON(menuUrl, function(menuItems) {
+                var html = "";
+                if (menuItems && menuItems.menu_items) {
+                    menuItems.menu_items.forEach(function(item) {
+                        html += '<div class="menu-item">';
+                        html += '<h3>' + item.name + '</h3>';
+                        html += '<p>' + (item.description || 'No description available') + '</p>';
+                        if (item.price_small) html += '<span class="label label-info">Small: $' + item.price_small + '</span> ';
+                        if (item.price_large) html += '<span class="label label-info">Large: $' + item.price_large + '</span>';
+                        html += '</div>';
+                    });
+                } else {
+                    html = '<p class="text-center">No menu items found for this category.</p>';
+                }
+                $("#menu-items-list").html(html);
+            }).fail(function() {
+                $("#menu-items-list").html('<p class="text-center text-danger">Failed to load menu items. Please try again later.</p>');
+            });
+        } else {
+            $("#category-title").text("No category selected");
+            $("#menu-items-list").html('<p class="text-center">Please go back and select a category.</p>');
+        }
+    </script>
+</body>
+</html>
