@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>David Chu's China Bistro</title>
+    <!-- Bootstrap CSS (CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            font-size: 16px;
+            color: #fff;
+            background-color: #61122f;
+            font-family: 'Oxygen', sans-serif;
+        }
+        #header-nav {
+            background-color: #f6b319;
+            border-radius: 0;
+            border: 0;
+        }
+        .navbar-brand h1 {
+            font-family: 'Lora', serif;
+            color: #557c3e;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: .75;
+        }
+        #nav-list {
+            margin-top: 10px;
+        }
+        #nav-list a {
+            color: #951C49;
+            text-align: center;
+        }
+        #nav-list a:hover {
+            background: #E7E7E7;
+        }
+        #phone {
+            margin-top: 5px;
+        }
+        #phone a {
+            text-align: right;
+            padding-bottom: 0;
+        }
+        #phone div {
+            color: #557c3e;
+            text-align: right;
+            padding-right: 15px;
+        }
+        .jumbotron {
+            box-shadow: 0 0 50px #3F0C1F;
+            border: 2px solid #3F0C1F;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #home-tile {
+            background-color: #f6b319;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        #menu-tile, #specials-tile, #map-tile {
+            height: 250px;
+            width: 100%;
+            margin-bottom: 15px;
+            position: relative;
+            border: 2px solid #3F0C1F;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        #menu-tile {
+            background: url('https://raw.githubusercontent.com/jhu-ep-coursera/fullstack-course4/master/examples/Lecture34/images/menu-tile.jpg') no-repeat;
+            background-position: center;
+        }
+        #specials-tile {
+            background: url('https://raw.githubusercontent.com/jhu-ep-coursera/fullstack-course4/master/examples/Lecture34/images/specials-tile.jpg') no-repeat;
+            background-position: center;
+        }
+        #map-tile {
+            background: url('https://raw.githubusercontent.com/jhu-ep-coursera/fullstack-course4/master/examples/Lecture34/images/map-tile.jpg') no-repeat;
+            background-position: center;
+        }
+        #menu-tile span, #specials-tile span, #map-tile span {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 1.6em;
+            text-transform: uppercase;
+            background-color: #000;
+            color: #fff;
+            opacity: .8;
+        }
+        footer {
+            background-color: #222;
+            color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+        }
+        .panel-footer {
+            margin-top: 30px;
+            padding-top: 35px;
+            padding-bottom: 30px;
+            background-color: #222;
+            border-top: 0;
+        }
+        .panel-footer section {
+            margin-bottom: 30px;
+        }
+        .panel-footer section span {
+            font-weight: bold;
+        }
+        @media (min-width: 1200px) {
+            .jumbotron {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="header-nav" class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <div class="navbar-brand">
+                        <a href="index.html"><h1>David Chu's China Bistro</h1></a>
+                    </div>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="collapsable-nav" class="collapse navbar-collapse">
+                    <ul id="nav-list" class="nav navbar-nav navbar-right">
+                        <li class="visible-xs active">
+                            <a href="index.html">
+                                <span class="glyphicon glyphicon-home"></span> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="menu-categories.html">
+                                <span class="glyphicon glyphicon-cutlery"></span><br class="hidden-xs"> Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-certificate"></span><br class="hidden-xs"> Awards
+                            </a>
+                        </li>
+                        <li id="phone" class="hidden-xs">
+                            <a href="tel:410-602-5008">
+                                <span>410-602-5008</span>
+                            </a>
+                            <div>* We Deliver</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
+    <div id="main-content" class="container">
+        <div class="jumbotron">
+            <div id="home-tile">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <a href="menu-categories.html">
+                            <div id="menu-tile"><span>Menu</span></div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <!-- Ссылка Specials - будет обновлена через JavaScript -->
+                        <a href="#" id="specials-link">
+                            <div id="specials-tile"><span>Specials</span></div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <a href="https://goo.gl/maps/5DxNpW8qKvL2" target="_blank">
+                            <div id="map-tile">
+                                <span>Map</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="panel-footer">
+        <div class="container">
+            <div class="row">
+                <section id="hours" class="col-sm-4">
+                    <span>Hours:</span><br>
+                    Sun-Thurs: 11:15am - 10:00pm<br>
+                    Fri: 11:15am - 2:30pm<br>
+                    Saturday Closed
+                    <hr class="visible-xs">
+                </section>
+                <section id="address" class="col-sm-4">
+                    <span>Address:</span><br>
+                    7105 Reisterstown Road<br>
+                    Baltimore, MD 21215
+                    <p>* Delivery area within 3-4 miles, with minimum order of $20 plus $3 charge for all deliveries.</p>
+                    <hr class="visible-xs">
+                </section>
+                <section id="testimonials" class="col-sm-4">
+                    <p>"The best Chinese restaurant I've been to! And that's saying a lot, since I've been to many!"</p>
+                    <p>"Amazing food! Great service! Couldn't ask for more! I'll be back again and again!"</p>
+                </section>
+            </div>
+            <div class="text-center">&copy; Copyright David Chu's China Bistro 2016</div>
+        </div>
+    </footer>
+
+    <!-- jQuery (CDN) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS (CDN) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- Ajax Utils (необходим для loadMenuItems) -->
+    <script>
+        // Простая реализация $dc.loadMenuItems для работы с API
+        var $dc = $dc || {};
+        
+        $dc.loadMenuItems = function(categoryShortName) {
+            // Перенаправляем на страницу с категорией
+            window.location.href = "https://rakhymzhan111.github.io/coursera1/module5-solution/menu-items.html?category=" + categoryShortName;
+        };
+        
+        // Функция для получения случайной категории
+        function getRandomCategoryShortName(callback) {
+            $.getJSON("https://coursera-jhu-default-rtdb.firebaseio.com/categories.json", function(categories) {
+                // Фильтруем категории, чтобы исключить пустые или невалидные
+                var validCategories = categories.filter(function(cat) {
+                    return cat && cat.short_name;
+                });
+                var randomIndex = Math.floor(Math.random() * validCategories.length);
+                var randomCategory = validCategories[randomIndex];
+                callback(randomCategory.short_name);
+            }).fail(function() {
+                // Если API не работает, используем запасной вариант
+                var fallbackCategories = ["L", "D", "S", "A", "B"];
+                var randomIndex = Math.floor(Math.random() * fallbackCategories.length);
+                callback(fallbackCategories[randomIndex]);
+            });
+        }
+        
+        // Ждем загрузки страницы и обновляем ссылку Specials
+        $(document).ready(function() {
+            getRandomCategoryShortName(function(shortName) {
+                var specialsLink = $("#specials-link");
+                specialsLink.attr("onclick", "$dc.loadMenuItems('" + shortName + "'); return false;");
+                specialsLink.attr("href", "#");
+                console.log("Specials теперь ведет на категорию: " + shortName);
+            });
+        });
+    </script>
+</body>
+</html>
